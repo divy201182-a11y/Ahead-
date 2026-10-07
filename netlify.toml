@@ -1,0 +1,25 @@
+# Ahead on Netlify — website + app (static, from dist/), the app API, map tiles and the 2-minute watcher
+# (functions in netlify/functions). Build: npm run build:netlify (copies only public files).
+
+[build]
+  publish = "dist"
+  command = "npm run build:netlify"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Client-side routing: every /app/... page is the app shell (files that exist, like /app/sw.js, win).
+[[redirects]]
+  from = "/app/*"
+  to = "/app/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = "max-age=31536000"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "DENY"
+    Permissions-Policy = "geolocation=(self), camera=(), microphone=()"

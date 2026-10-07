@@ -1,0 +1,21 @@
+# Secrets — never commit your API key
+.env
+
+node_modules/
+
+# Local app data + build workspaces
+data/
+.superpowers/
+
+# Downloaded tools (cloudflared for the phone tunnel)
+tools/
+
+# Netlify build output and local Netlify state
+dist/
+.netlify/
+.env.netlify-local
+*.backup*.json
+
+# Holds a real key on this laptop — keep it out of version control
+.env.example
+deno.lock

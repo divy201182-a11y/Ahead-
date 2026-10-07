@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Ahead</title>
+  <meta name="description" content="Ahead watches your routes for traffic and weather and alerts you before you leave and while you drive.">
+  <meta name="theme-color" content="#f6f5f2">
+  <link rel="manifest" href="/app/manifest.webmanifest">
+  <link rel="icon" href="/src/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/src/assets/icons/apple-touch-180.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Ahead">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="/src/styles/tokens.css">
+  <link rel="stylesheet" href="/src/styles/base.css">
+  <link rel="stylesheet" href="/src/styles/components.css">
+  <link rel="stylesheet" href="/src/styles/console.css">
+  <link rel="stylesheet" href="/src/styles/app.css">
+  <link rel="stylesheet" href="/src/styles/app-v2.css">
+  <link rel="stylesheet" href="/src/styles/app-focus.css">
+  <link rel="stylesheet" href="/src/styles/app-responsive.css">
+  <link rel="stylesheet" href="/src/styles/app-dark.css">
+  <link rel="stylesheet" href="/src/styles/app-motion.css">
+  <script>
+    // Theme before first paint (no light flash); src/app/theme.js keeps it updated.
+    try {
+      var c = localStorage.getItem('ahead-theme') || 'light';
+      document.documentElement.dataset.theme = c === 'system' ? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : c;
+    } catch (e) {}
+  </script>
+</head>
+<body class="app-body">
+  <!-- Opening splash (removed by src/app/motion.js once the app is ready) -->
+  <div class="splash" id="splash" aria-hidden="true">
+    <svg viewBox="0 0 32 32" fill="none">
+      <defs>
+        <linearGradient id="splash-grad" x1="4" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#FF8A00"/><stop offset="1" stop-color="#E52323"/>
+        </linearGradient>
+      </defs>
+      <path d="M5 28V15.5a11 11 0 0 1 22 0V28" stroke="url(#splash-grad)" stroke-width="3.2"/>
+      <path d="M11 28V17a5 5 0 0 1 10 0v11" stroke="#FF8A00" stroke-width="2.4"/>
+      <path d="M15 28v-9.6a1 1 0 0 1 2 0V28" stroke="#FFC48A" stroke-width="1.6"/>
+    </svg>
+    <span class="splash__word">AHEAD</span>
+    <span class="splash__line"></span>
+  </div>
+  <div id="app"></div>
+  <script type="module" src="/src/app/main.js"></script>
+</body>
+</html>
